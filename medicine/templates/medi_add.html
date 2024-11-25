@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Medicine {% endblock title %}
+
+{% block content %}
+
+<div class="container mt-5 shadow-lg p-5" style="background-color: #f8f9fa; border-radius: 15px;">
+    <h2 class="text-center mb-4" style="color: #00796b; font-weight: bold;">Add Medicines</h2>
+    <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="medicineName" style="color: #004d40; font-weight: 600;">Medicine Name</label>
+                <input 
+                    type="text" 
+                    class="form-control shadow-sm" 
+                    id="medicineName" 
+                    name="medicineName" 
+                    placeholder="Enter medicine name" 
+                    required 
+                    style="border-radius: 8px; border: 1px solid #b2dfdb;">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="mrp" style="color: #004d40; font-weight: 600;">MRP (Rs.)</label>
+                <input 
+                    type="number" 
+                    class="form-control shadow-sm" 
+                    id="mrp" 
+                    name="mrp" 
+                    placeholder="Enter price in Rs." 
+                    required 
+                    style="border-radius: 8px; border: 1px solid #b2dfdb;">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="mfgDate" style="color: #004d40; font-weight: 600;">Manufacturing Date</label>
+                <input 
+                    type="date" 
+                    class="form-control shadow-sm" 
+                    id="mfgDate" 
+                    name="mfgDate" 
+                    required 
+                    style="border-radius: 8px; border: 1px solid #b2dfdb;">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="expiryDate" style="color: #004d40; font-weight: 600;">Expiry Date</label>
+                <input 
+                    type="date" 
+                    class="form-control shadow-sm" 
+                    id="expiryDate" 
+                    name="expiryDate" 
+                    required 
+                    style="border-radius: 8px; border: 1px solid #b2dfdb;">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="quantity" style="color: #004d40; font-weight: 600;">Quantity</label>
+            <input 
+                type="number" 
+                class="form-control shadow-sm" 
+                id="quantity" 
+                name="quantity" 
+                placeholder="Enter quantity" 
+                required 
+                style="border-radius: 8px; border: 1px solid #b2dfdb;">
+        </div>
+        <div class="text-center">
+            <button 
+                type="submit" 
+                class="btn btn-success px-5 py-2 shadow" 
+                style="border-radius: 25px; background-color: #00796b; border: none; font-size: 16px; transition: 0.3s;">
+                Add Medicine
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,137 @@
+{% load static %}
+{% block title %}Login {% endblock title %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <title>Medicine</title>
+    <style>
+        /* Custom styles for the navbar */
+        .navbar {
+            background-color: #2c3e50 ; /* Blue background */
+            border-radius: 0px;
+        }
+
+        .navbar .nav-link {
+            color: white !important; /* White text */
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-link:hover {
+            color: #ffc107 !important; /* Hover color (Yellow) */
+            text-decoration: none; /* Remove underline */
+        }
+
+        .navbar .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .navbar .navbar-toggler-icon {
+            background-color: white; /* Hamburger icon color */
+        }
+
+        .navbar-nav {
+            margin-left: auto; /* Align the navbar links to the right */
+        }
+
+        .navbar-nav .nav-item {
+            margin-left: 15px; /* Space out the nav items */
+            margin-right: 15px; /* Space out the nav items */
+        }
+
+        .navbar-brand img {
+            max-height: 50px; /* Adjust logo size */
+            margin-right: 10px;
+        }
+
+        /* Active link color */
+        .navbar .nav-item.active .nav-link {
+            color: #ffc107 !important;
+            font-weight: 600;
+        }
+
+        /* Center logo and nav items */
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Sticky footer */
+        html, body {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        .content {
+            flex: 1;
+        }
+        footer {
+            background-color: #2c3e50 ;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        /* Social Media Icons */
+        .social-icons a {
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: #ffc107; /* Yellow hover color */
+        }
+    </style>
+</head>
+<body>
+    
+    
+    <div class="container mt-5 shadow p-4" style="max-width: 400px; background-color: #f8f9fa; border-radius: 15px;">
+        <h2 class="text-center mb-4" style="color: #333;">Admin Login</h2>
+        <form method="POST" action="{% url 'admin_login' %}" class="needs-validation" novalidate>
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username" style="font-weight: bold;">Username</label>
+                <input type="text" name="username" id="username" class="form-control" required placeholder="Enter your username">
+            </div>
+            <div class="form-group mt-3">
+                <label for="password" style="font-weight: bold;">Password</label>
+                <input type="password" name="password" id="password" class="form-control" required minlength="6" placeholder="Enter your password">
+                <small class="form-text text-muted">
+                    Password must be at least 6 characters and include letters and numbers.
+                </small>
+            </div>
+            {% if error_message %}
+            <div class="alert alert-danger mt-3" role="alert">
+                {{ error_message }}
+            </div>
+            {% endif %}
+            <button type="submit" class="btn btn-primary btn-block mt-4" style="border-radius: 25px;">Login</button>
+        </form>
+    </div>
+
+    
+
+    
+    
+    <!-- Font Awesome for Social Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

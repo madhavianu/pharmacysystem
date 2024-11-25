@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %} Dashboard{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center" style="color: #00796b;">Admin Dashboard</h2>
+    <p class="text-center" style="font-size: 18px; color: #555;">
+        Welcome, {{ user.username }}! You have successfully logged in as an admin.
+    </p>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'home_page' %}" class="btn btn-primary" style="border-radius: 25px;">Manage Patients</a>
+        <!--<a href="{% url 'logout' %}" class="btn btn-danger" style="border-radius: 25px;">Logout</a> -->
+    </div>
+</div>
+{% endblock %} 

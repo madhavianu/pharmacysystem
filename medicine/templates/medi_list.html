@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %} Medicine List {% endblock title %}
+
+{% block content %}
+<div class="container mt-5" style="background-color: #e0f7fa; padding: 20px; border-radius: 10px;">
+    <h2 class="text-center">Medicine List</h2>
+    <!-- Add Medicine Button -->
+    <div class="text-center mt-3">
+        <a href="{% url 'medi_add' %}" class="btn btn-success" style="border-radius: 25px; padding: 10px 20px;">
+            Add Medicine
+        </a>
+    </div>
+    <p class="text-center">Below is the list of medicines you have added.</p>
+
+    <div class="table-responsive mt-4">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Medicine Name</th>
+                    <th>MRP (Rs.)</th>
+                    <th>Manufacturing Date</th>
+                    <th>Expiry Date</th>
+                    <th>Quantity</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for medicine in medicines %}
+                <tr>
+                    <td>{{ medicine.name }}</td>
+                    <td>{{ medicine.mrp }}</td>
+                    <td>{{ medicine.mfg_date }}</td>
+                    <td>{{ medicine.expiry_date }}</td>
+                    <td>{{ medicine.quantity }}</td>
+                    <td>
+                        <a href="{% url 'medi_edit' medicine.id %}" class="btn btn-primary btn-sm">Edit</a>
+                        <form action="{% url 'medi_delete' medicine.id %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center">No medicines available.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

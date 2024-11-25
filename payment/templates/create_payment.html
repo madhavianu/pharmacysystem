@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %} Create Payment {% endblock title %}
+
+{% block content %}
+<div class="container mt-5 shadow-lg p-5" style="background-color: #f8f9fa; border-radius: 15px;">
+    <h2 class="text-center mb-4" style="color: #00796b; font-weight: bold;">Payment Page</h2>
+    <p class="text-center" style="color: #555; font-size: 16px;">Please enter the payment details and confirm.</p>
+
+    <!-- Payment Form -->
+    <form method="post" action="{% url 'create_payment' %}" class="mt-4">
+        {% csrf_token %}
+
+        <!-- Select Medicine -->
+        <div class="form-group mb-3">
+            <label for="medicine" class="form-label" style="color: #333; font-weight: bold;">Select Medicine:</label>
+            <select name="medicine_id" id="medicine" class="form-control shadow-sm" required>
+                <option value="">Select Medicine</option>
+                {% for medicine in medicines %}
+                <option value="{{ medicine.id }}">{{ medicine.name }} (Available: {{ medicine.quantity }})</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Quantity -->
+        <div class="form-group mb-3">
+            <label for="quantity" class="form-label" style="color: #333; font-weight: bold;">Quantity:</label>
+            <input type="number" name="quantity" id="quantity" class="form-control shadow-sm" min="1" placeholder="Enter quantity" required>
+        </div>
+
+        <!-- Payment Amount -->
+        <div class="form-group mb-3">
+            <label for="amount" class="form-label" style="color: #333; font-weight: bold;">Amount:</label>
+            <input type="number" name="amount" id="amount" class="form-control shadow-sm" placeholder="Enter amount" required>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="form-group mb-4">
+            <label for="payment_method" class="form-label" style="color: #333; font-weight: bold;">Payment Method:</label>
+            <select name="payment_method" id="payment_method" class="form-control shadow-sm" required>
+                <option value="Cash">Cash</option>
+                <option value="Debit Card">Debit Card</option>
+                <option value="Credit Card">Credit Card</option>
+            </select>
+        </div>
+
+        <!-- Confirm Button -->
+        <div class="text-center">
+            <button type="submit" class="btn btn-success px-5 py-2 shadow"
+                style="border-radius: 25px; background-color: #00796b; border: none; font-size: 16px; transition: 0.3s;">
+                Confirm
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

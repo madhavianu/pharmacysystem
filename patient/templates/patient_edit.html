@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit Patient {% endblock title %}
+{% block content %}
+
+<div class="container mt-5" style="max-width: 700px; background-color: #ffffff; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); padding: 30px; border-radius: 15px;">
+    <h2 class="text-center mb-4" style="color: #00796b;">Edit Patient Details</h2>
+    <form action="{% url 'patient_edit' patient.id %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name" style="font-weight: bold;">Name</label>
+            <input type="text" class="form-control" name="name" value="{{ patient.name }}" placeholder="Enter patient's name" required>
+        </div>
+        <div class="form-group">
+            <label for="age" style="font-weight: bold;">Age</label>
+            <input type="number" class="form-control" name="age" value="{{ patient.age }}" placeholder="Enter patient's age" required>
+        </div>
+        <div class="form-group">
+            <label for="sex" style="font-weight: bold;">Sex</label>
+            <select class="form-control" name="sex" required>
+                <option value="Male" {% if patient.sex == 'Male' %}selected{% endif %}>Male</option>
+                <option value="Female" {% if patient.sex == 'Female' %}selected{% endif %}>Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="problem" style="font-weight: bold;">Problem</label>
+            <input type="text" class="form-control" name="problem" value="{{ patient.problem }}" placeholder="Enter patient's problem" required>
+        </div>
+        <div class="form-group">
+            <label for="nic" style="font-weight: bold;">NIC</label>
+            <input type="text" class="form-control" name="nic" value="{{ patient.nic }}" placeholder="Enter patient's NIC" required>
+        </div>
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-success" style="padding: 10px 20px; font-size: 16px; border-radius: 25px;">Update Patient</button>
+            <a href="{% url 'patient_list' %}" class="btn btn-secondary" style="padding: 10px 20px; font-size: 16px; border-radius: 25px; margin-left: 10px;">Cancel</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
